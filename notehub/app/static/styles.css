@@ -1,0 +1,67 @@
+div.note-tabs {
+    margin-top: 16px;
+}
+ul.notes {
+    list-style-type: none;
+    padding: 0px;
+    margin: 16px 0px 0px 0px;
+    border-top: 1px solid #e0e0e0;
+}
+div.note-tabs ul.notes {
+    margin: 0px;
+    border-top: none;
+}
+ul.notes li.note {
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+}
+ul.notes li.note:hover {
+    background-color: #f0f0f0;
+}
+div.note-date {
+    float: right;
+}
+div.note-tag {
+    text-align:center;
+    padding:10px 20px;
+    background:#CCBBFF;
+    border-radius:20px;
+    display:inline-block;
+}
+div.note-author {
+    font-weight: bold;
+}
+div.note-title {
+    margin-left: 48px;
+    min-height: 48px;
+}
+div.note-footer {
+    text-align: right;
+}
+div.note-content {
+    margin-left: 48px;
+    min-height: 48px;
+}
+div.flask-pagedown-preview {
+    margin: 10px 0px 10px 0px;
+    border: 1px solid #e0e0e0;
+    padding: 4px;
+}
+div.flask-pagedown-preview h1 {
+    font-size: 140%;
+}
+div.flask-pagedown-preview h2 {
+    font-size: 130%;
+}
+div.flask-pagedown-preview h3 {
+    font-size: 120%;
+}
+.note-body h1 {
+    font-size: 140%;
+}
+.note-body h2 {
+    font-size: 130%;
+}
+.note-body h3 {
+    font-size: 120%;
+}

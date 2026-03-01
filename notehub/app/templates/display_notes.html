@@ -1,0 +1,17 @@
+{% macro display(notes, moment) -%}
+    <ul class="notes">
+        {% for note in notes %}
+        <li class="note">
+            <div class="note-content">
+                <h3><div class="note-title">
+                    <a href="{{ url_for('note.view', nid=note.get('note').get('nid')) }}">
+                        {{ note.get('note').get('title') }}
+                    </a>
+                </div></h3>
+                <div class="note-date">{{ note.get('note').get('moment_stamp') }}</div>
+                <div class="note-tag">{{ note.get('note').get('tag') }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+{%- endmacro %}

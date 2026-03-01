@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}NoteHub - Note{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>{{ note.get('title') }}</h1>
+    <div class="note-tag">{{ note.get('tag') }}</div>
+    <h3><div class="note-author"><a href="{{ url_for('main.profile', username=author) }}">{{ author }}</a></div></h3>
+    <div class="note-footer">
+        {% if session.get('username') == author %}
+            <a href="{{ url_for('note.edit', nid=note.get('nid')) }}">
+                <span class="label label-primary">Edit</span>
+            </a>
+            <a href="{{ url_for('note.change_title', nid=note.get('nid')) }}">
+                <span class="label label-primary">Change Title</span>
+            </a>
+            <a href="{{ url_for('note.change_tag', nid=note.get('nid')) }}">
+                <span class="label label-primary">Change Tag</span>
+            </a>
+            <a href="{{ url_for('note.delete', nid=note.get('nid')) }}">
+                <span class="label label-primary">Delete</span>
+            </a>
+        {% endif %}
+        {% if session.get('username') %}
+                {% if stared %}
+                    <a href="{{ url_for('note.unstar', nid=note.get('nid')) }}">
+                        <span class="label label-primary">Unstar</span>
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('note.star', nid=note.get('nid')) }}">
+                        <span class="label label-primary">Star</span>
+                    </a>
+                {% endif %}
+            <a href="{{ url_for('note.fork', nid=note.get('nid')) }}">
+                <span class="label label-primary">Fork</span>
+            </a>
+        {% endif %}
+    </div>
+</div>
+<div class="note-content">
+    <div class="note-date">{{ moment(moment_stamp, local=True).fromNow(refresh=True) }}</div>
+    <div class="note-body">
+        {{ body | safe }}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% import "display_notes.html" as display %}
+
+{% block title %}NoteHub{% endblock %}
+
+{% block page_content %}
+<div class="note-tabs">
+    {{ display.display(notes, moment) }}
+</div>
+{% endblock %}

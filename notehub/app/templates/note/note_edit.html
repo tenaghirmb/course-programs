@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}NoteHub - Edit Note{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>{{ note.get('title') }}</h1>
+    <div class="note-tag">{{ note.get('tag') }}</div>
+</div>
+<div>
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock %}
