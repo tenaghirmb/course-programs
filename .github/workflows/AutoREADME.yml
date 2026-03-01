@@ -1,0 +1,30 @@
+name: README Automation
+run-name: ${{ github.actor }} is generating README 🚀
+on:
+  workflow_dispatch:
+jobs:
+  Generate-README:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate README
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - run: |
+          rm -f README.md
+          echo "# Table of Contents" > README.md
+          # echo "[![README Automation](https://github.com/tenaghirmb/tutorials/actions/workflows/AutoREADME.yml/badge.svg?branch=main&event=push)](https://github.com/tenaghirmb/tutorials/actions/workflows/AutoREADME.yml)" >> README.md
+          echo "[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://opensource.org)" >> README.md
+          echo -e "[![BuyMeACoffee](https://raw.githubusercontent.com/pachadotdev/buymeacoffee-badges/main/bmc-donate-yellow.svg)](https://www.buymeacoffee.com/tenaghirmb)\n" >> README.md
+          for file in *; do
+              if [ -d "$file" ]; then
+                  FILE_PATH="$file"
+                  LAST_COMMIT_MSG=$(git log -1 --pretty=%s -- "$FILE_PATH")
+                  echo -e "[$file]($file): $LAST_COMMIT_MSG\n" >> README.md
+              fi
+          done
+          echo -e "Last synchronized by automated script at $(date)\n" >> README.md
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: Auto generate README
